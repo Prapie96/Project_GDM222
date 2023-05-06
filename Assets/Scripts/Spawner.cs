@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Spawner : MonoBehaviour {
 
@@ -16,20 +15,36 @@ public class Spawner : MonoBehaviour {
         timeBtwSpawns = startTimeBtwSpawns;
     }
 
-    private void Update()
+  private void Update()
+{
+    ScoreManager scoreManager = GameObject.FindObjectOfType<ScoreManager>();
+    float currentScore = scoreManager.GetScore();
+
+    if (timeBtwSpawns <= 0)
     {
-        if (timeBtwSpawns <= 0)
-        {
-            int rand = Random.Range(0, obstacleTemplate.Length);
-            Instantiate(obstacleTemplate[rand], transform.position, Quaternion.identity);
-            timeBtwSpawns = startTimeBtwSpawns;
-            if (startTimeBtwSpawns > minTime) {
-                startTimeBtwSpawns -= timeDecrease;
-            }
-        }
-        else {
-            timeBtwSpawns -= Time.deltaTime;
+        int rand = Random.Range(0, obstacleTemplate.Length);
+        Instantiate(obstacleTemplate[rand], transform.position, Quaternion.identity);
+        timeBtwSpawns = Random.Range(minTime, startTimeBtwSpawns); //ลดเวลาระหว่างการสร้าง
+
+        //เช็คว่าเป็นเลข Fibonacci หรือไม่ ถ้าใช่ก็ลดเวลาการสร้าง
+        if (isFibonacci((int)currentScore)) { 
+            timeBtwSpawns -= timeDecrease;
         }
     }
+    else {
+        timeBtwSpawns -= Time.deltaTime;
+    }
+}
+
+private bool isFibonacci(int n) {
+    int a = 0, b = 1, c = 1;
+    while (c < n) {
+        c = a + b;
+        a = b;
+        b = c;
+    }
+    return c == n;
+}
+
 
 }

@@ -29,6 +29,11 @@ public class Obstacle : MonoBehaviour
             Destroy(gameObject);
 
         }
+        else if (other.CompareTag("Ball"))
+        {
+            Destroy(gameObject);
+            
+        }
 
     }
 }
