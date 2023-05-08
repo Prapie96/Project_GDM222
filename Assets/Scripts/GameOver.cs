@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +11,9 @@ public class GameOver : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListe
     public void Restart()
     {   //LoadAd();
        // ShowAd();
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+          
     }
 
     [SerializeField] string _androidAdUnitId = "Interstitial_Android";

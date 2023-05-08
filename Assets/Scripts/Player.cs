@@ -30,12 +30,13 @@ public class Player : MonoBehaviour
     {   if(health <= 0)
         {
             
-            Time.timeScale = 0f; // stop the current scene
+        
              //show the game over 
             gameOverPanel.SetActive(true);
+           
         }
           if (health >= 0)
-    {
+    {   
         transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
         if (Input.GetKeyDown(KeyCode.UpArrow) && transform.position.y < maxHeight)
         {
