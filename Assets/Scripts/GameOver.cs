@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,8 @@ using UnityEngine.Advertisements;
 public class GameOver : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {   
     public void Restart()
-    {   LoadAd();
-        ShowAd();
+    {   //LoadAd();
+       // ShowAd();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

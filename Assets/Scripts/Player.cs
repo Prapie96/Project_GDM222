@@ -29,7 +29,9 @@ public class Player : MonoBehaviour
     void Update()
     {   if(health <= 0)
         {
-            //show the game over panel
+            
+            Time.timeScale = 0f; // stop the current scene
+             //show the game over 
             gameOverPanel.SetActive(true);
         }
           if (health >= 0)
